@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sunnyside Tea &amp; Coffee Co. — Groovy Brews Since 2025</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bowlby+One+SC&family=Karla:ital,wght@0,400;0,500;0,700;0,800;1,400&family=Space+Mono:wght@400;700&display=swap');
+
+/* ============ TOKENS ============ */
+:root{
+  --cream:        #F6E8CB;
+  --cream-light:  #FCF4E2;
+  --brown:        #3A2317;
+  --brown-soft:   #6E4B36;
+  --orange:       #D9622B;
+  --orange-dark:  #A8431A;
+  --mustard:      #E8A23A;
+  --avocado:      #7C8B3D;
+  --avocado-dark: #5F6C2C;
+  --line:         #3A2317;
+
+  --font-display: 'Bowlby One SC', cursive;
+  --font-body:    'Karla', sans-serif;
+  --font-mono:    'Space Mono', monospace;
+
+  --radius: 14px;
+  --hard-shadow: 6px 6px 0 var(--brown);
+  --hard-shadow-sm: 4px 4px 0 var(--brown);
+}
+
+/* ============ RESET ============ */
+*, *::before, *::after{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; }
+body{
+  margin:0;
+  background: var(--cream);
+  color: var(--brown);
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+img{ max-width:100%; display:block; }
+a{ color: inherit; text-decoration: none; }
+ul{ margin:0; padding:0; list-style:none; }
+h1,h2,h3,h4{
+  font-family: var(--font-display);
+  line-height: 1.25;
+  letter-spacing: 0.5px;
+  margin: 0 0 0.5em;
+  color: var(--brown);
+}
+p{ margin: 0 0 1em; }
+
+.container{
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.eyebrow{
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 0.78rem;
+  color: var(--orange-dark);
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation: none !important; transition: none !important; }
+}
+
+/* ============ BUTTONS ============ */
+.btn{
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: inline-block;
+  padding: 14px 28px;
+  border-radius: 999px;
+  border: 2px solid var(--brown);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  text-align: center;
+}
+.btn-primary{
+  background: var(--orange);
+  color: var(--cream-light);
+  box-shadow: var(--hard-shadow-sm);
+}
+.btn-outline{
+  background: transparent;
+  color: var(--brown);
+  box-shadow: var(--hard-shadow-sm);
+}
+.btn-light{
+  background: var(--cream-light);
+  color: var(--brown);
+  box-shadow: 4px 4px 0 var(--brown-soft);
+}
+.btn:hover{
+  transform: translate(-3px,-3px);
+}
+.btn-primary:hover{ box-shadow: 9px 9px 0 var(--brown); }
+.btn-outline:hover{ box-shadow: 9px 9px 0 var(--brown); }
+.btn-light:hover{ box-shadow: 7px 7px 0 var(--brown-soft); }
+
+.btn-row{
+  display:flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+/* ============ NAV ============ */
+.nav{
+  position: sticky;
+  top:0;
+  z-index: 100;
+  background: var(--cream);
+  border-bottom: 3px dashed var(--brown);
+}
+.nav-inner{
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+.logo{
+  display:flex;
+  align-items:center;
+  gap: 12px;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  color: var(--brown);
+}
+.logo-sun{
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: repeating-conic-gradient(var(--orange) 0deg 20deg, var(--mustard) 20deg 40deg);
+  flex-shrink: 0;
+  box-shadow: 0 0 0 3px var(--brown);
+}
+.logo small{
+  display:block;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 3px;
+  color: var(--orange-dark);
+  margin-top: 2px;
+}
+.nav-links{
+  display:flex;
+  gap: 32px;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+.nav-links a{
+  position: relative;
+  padding: 4px 2px;
+}
+.nav-links a.active,
+.nav-links a:hover{
+  color: var(--orange-dark);
+}
+.nav-links a.active::after{
+  content:'';
+  position:absolute;
+  left:0; right:0; bottom:-6px;
+  height: 4px;
+  background: var(--orange);
+  border-radius: 2px;
+}
+.nav-toggle{
+  display:none;
+  flex-direction: column;
+  gap: 5px;
+  background:none;
+  border:none;
+  cursor:pointer;
+  padding: 6px;
+}
+.nav-toggle span{
+  width: 26px;
+  height: 3px;
+  background: var(--brown);
+  border-radius: 2px;
+}
+
+@media (max-width: 760px){
+  .nav-links{
+    position: absolute;
+    top: 100%;
+    left:0; right:0;
+    background: var(--cream);
+    flex-direction: column;
+    gap: 0;
+    border-bottom: 3px dashed var(--brown);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  .nav-links.open{ max-height: 320px; }
+  .nav-links a{
+    padding: 16px 24px;
+    border-top: 1px solid rgba(58,35,23,0.15);
+    display:block;
+  }
+  .nav-toggle{ display:flex; }
+}
+
+/* ============ SCALLOP DIVIDERS ============ */
+.scallop{
+  height: 22px;
+  background-repeat: repeat-x;
+  background-size: 44px 22px;
+  width:100%;
+}
+.scallop--orange-cream{
+  background-color: var(--orange);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/0/svg' width='44' height='22' viewBox='0 0 44 22'%3E%3Cpath d='M0 0 C0 16 44 16 44 0 L44 22 L0 22 Z' fill='%23F6E8CB'/%3E%3C/svg%3E");
+}
+.scallop--cream-avocado{
+  background-color: var(--cream);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/0/svg' width='44' height='22' viewBox='0 0 44 22'%3E%3Cpath d='M0 0 C0 16 44 16 44 0 L44 22 L0 22 Z' fill='%237C8B3D'/%3E%3C/svg%3E");
+}
+.scallop--avocado-cream{
+  background-color: var(--avocado);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/0/svg' width='44' height='22' viewBox='0 0 44 22'%3E%3Cpath d='M0 0 C0 16 44 16 44 0 L44 22 L0 22 Z' fill='%23F6E8CB'/%3E%3C/svg%3E");
+}
+.scallop--cream-brown{
+  background-color: var(--cream);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/0/svg' width='44' height='22' viewBox='0 0 44 22'%3E%3Cpath d='M0 0 C0 16 44 16 44 0 L44 22 L0 22 Z' fill='%233A2317'/%3E%3C/svg%3E");
+}
+.scallop--mustard-cream{
+  background-color: var(--mustard);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/0/svg' width='44' height='22' viewBox='0 0 44 22'%3E%3Cpath d='M0 0 C0 16 44 16 44 0 L44 22 L0 22 Z' fill='%23F6E8CB'/%3E%3C/svg%3E");
+}
+
+/* ============ HERO (home) ============ */
+.hero{
+  position: relative;
+  background: linear-gradient(180deg, var(--mustard) 0%, var(--orange) 100%);
+  overflow: hidden;
+  padding: 90px 0 70px;
+}
+.hero-sun{
+  position: absolute;
+  top: -180px;
+  right: -160px;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: repeating-conic-gradient(var(--cream) 0deg 12deg, transparent 12deg 24deg);
+  opacity: 0.35;
+  animation: spin 90s linear infinite;
+}
+@keyframes spin{ to{ transform: rotate(360deg); } }
+
+.hero-inner{
+  position: relative;
+  z-index: 2;
+  display:grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+.hero h1{
+  font-size: clamp(2.6rem, 6vw, 4.4rem);
+  color: var(--cream-light);
+  text-shadow: 4px 4px 0 var(--brown);
+  margin-bottom: 0.4em;
+}
+.hero p{
+  color: var(--brown);
+  font-size: 1.15rem;
+  max-width: 480px;
+}
+.hero-graphic{
+  position: relative;
+  display:flex;
+  justify-content:center;
+}
+.cup{
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: var(--cream-light);
+  border: 6px solid var(--brown);
+  box-shadow: var(--hard-shadow);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  text-align: center;
+  color: var(--brown);
+  transform: rotate(-6deg);
+  position: relative;
+}
+.cup .steam{
+  position:absolute;
+  top:-50px;
+  left:50%;
+  transform: translateX(-50%);
+  font-size: 2.5rem;
+  opacity: 0.55;
+  animation: steam 3.5s ease-in-out infinite;
+}
+.cup .steam:nth-child(2){ left: 38%; animation-delay: 1.2s; }
+.cup .steam:nth-child(3){ left: 62%; animation-delay: 2.4s; }
+@keyframes steam{
+  0%{ opacity:0; transform: translate(-50%,0) scale(0.8); }
+  30%{ opacity:0.6; }
+  100%{ opacity:0; transform: translate(-50%,-40px) scale(1.2); }
+}
+
+@media (max-width: 820px){
+  .hero-inner{ grid-template-columns: 1fr; text-align:center; }
+  .hero p{ margin:0 auto 1em; }
+  .btn-row{ justify-content:center; }
+  .hero-graphic{ margin-top: 20px; }
+}
+
+/* ============ SECTIONS ============ */
+section{ padding: 80px 0; }
+.section-head{
+  text-align:center;
+  max-width: 640px;
+  margin: 0 auto 50px;
+}
+.bg-cream{ background: var(--cream); }
+.bg-avocado{ background: var(--avocado); color: var(--cream-light); }
+.bg-avocado h2, .bg-avocado h3{ color: var(--cream-light); }
+.bg-brown{ background: var(--brown); color: var(--cream); }
+.bg-mustard{ background: var(--mustard); }
+
+/* ============ CARDS / GRID ============ */
+.grid-3{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.grid-2{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+@media (max-width: 880px){
+  .grid-3{ grid-template-columns: 1fr; }
+  .grid-2{ grid-template-columns: 1fr; }
+}
+
+.card{
+  background: var(--cream-light);
+  border: 2px solid var(--brown);
+  border-radius: var(--radius);
+  box-shadow: var(--hard-shadow-sm);
+  padding: 28px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover{
+  transform: translate(-4px,-4px);
+  box-shadow: 9px 9px 0 var(--brown);
+}
+.card .tag{
+  display:inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: var(--orange);
+  color: var(--cream-light);
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+.card .price{
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--orange-dark);
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+/* ============ STAMP BADGE ============ */
+.stamp{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 3px dashed var(--brown);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  text-align:center;
+  font-size: 0.8rem;
+  line-height: 1.3;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transform: rotate(-10deg);
+  color: var(--brown);
+  background: var(--cream-light);
+  flex-shrink:0;
+}
+
+/* ============ FOOTER ============ */
+.footer{
+  padding: 60px 0 40px;
+}
+.footer-inner{
+  display:grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 40px;
+}
+.footer h4{
+  color: var(--mustard);
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-family: var(--font-mono);
+}
+.footer p, .footer li{
+  color: var(--cream);
+  opacity: 0.85;
+}
+.footer a:hover{ color: var(--mustard); }
+.footer-bottom{
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px dashed rgba(246,232,203,0.3);
+  display:flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+/* vinyl record flourish */
+.vinyl{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: repeating-radial-gradient(circle at center, var(--brown-soft) 0 2px, #2a1810 2px 4px);
+  border: 2px solid var(--cream);
+  position: relative;
+  animation: spin 6s linear infinite;
+  flex-shrink:0;
+}
+.vinyl::after{
+  content:'';
+  position:absolute;
+  top:50%; left:50%;
+  width: 16px; height: 16px;
+  background: var(--orange);
+  border-radius: 50%;
+  transform: translate(-50%,-50%);
+  border: 2px solid var(--cream);
+}
+.now-spinning{
+  display:flex;
+  align-items:center;
+  gap: 16px;
+}
+
+@media (max-width: 760px){
+  .footer-inner{ grid-template-columns: 1fr; }
+}
+
+/* ============ PAGE HEADER (menu/about/contact) ============ */
+.page-header{
+  background: linear-gradient(180deg, var(--mustard) 0%, var(--orange) 100%);
+  padding: 70px 0 56px;
+  text-align:center;
+  position: relative;
+  overflow:hidden;
+}
+.page-header h1{
+  color: var(--cream-light);
+  text-shadow: 4px 4px 0 var(--brown);
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+}
+.page-header p{
+  max-width: 560px;
+  margin: 0 auto;
+  color: var(--brown);
+  font-size: 1.1rem;
+}
+
+/* ============ MENU SECTIONS ============ */
+.menu-section{ padding: 60px 0; }
+.menu-section + .menu-section{ border-top: 3px dashed var(--brown-soft); }
+.menu-section-head{
+  display:flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+.menu-section-head h2{
+  font-size: 1.8rem;
+  margin:0;
+}
+.menu-section-head .eyebrow{ margin:0; }
+.menu-list{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px 48px;
+}
+@media (max-width: 760px){
+  .menu-list{ grid-template-columns: 1fr; }
+}
+.menu-item{
+  display:flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 14px;
+  border-bottom: 2px dotted var(--brown-soft);
+}
+.menu-item-info h3{
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 1.08rem;
+  margin: 0 0 4px;
+  color: var(--brown);
+}
+.menu-item-info p{
+  margin:0;
+  font-size: 0.92rem;
+  color: var(--brown-soft);
+}
+.menu-item-price{
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--orange-dark);
+  white-space: nowrap;
+  font-size: 1.05rem;
+}
+
+/* ============ ABOUT ============ */
+.story-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+.story-photo{
+  border: 3px solid var(--brown);
+  border-radius: var(--radius);
+  box-shadow: var(--hard-shadow);
+  aspect-ratio: 4/3;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  text-align:center;
+  padding: 20px;
+  color: var(--cream-light);
+  background: repeating-linear-gradient(135deg, var(--orange) 0 24px, var(--mustard) 24px 48px);
+}
+@media (max-width: 820px){
+  .story-grid{ grid-template-columns: 1fr; }
+}
+
+.timeline{
+  position: relative;
+  margin: 0 auto;
+  max-width: 760px;
+}
+.timeline::before{
+  content:'';
+  position:absolute;
+  left: 90px;
+  top:0; bottom:0;
+  width: 3px;
+  background: repeating-linear-gradient(to bottom, var(--brown) 0 10px, transparent 10px 20px);
+}
+@media (max-width: 600px){
+  .timeline::before{ left: 50px; }
+}
+.timeline-item{
+  display:grid;
+  grid-template-columns: 90px 1fr;
+  gap: 24px;
+  margin-bottom: 40px;
+  position: relative;
+}
+@media (max-width: 600px){
+  .timeline-item{ grid-template-columns: 50px 1fr; }
+}
+.timeline-year{
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--orange-dark);
+  text-align:right;
+  padding-top: 4px;
+}
+.timeline-dot{
+  position:absolute;
+  left: 90px;
+  top: 6px;
+  width: 16px; height:16px;
+  background: var(--orange);
+  border: 3px solid var(--cream);
+  outline: 2px solid var(--brown);
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+@media (max-width: 600px){
+  .timeline-dot{ left:50px; }
+}
+.timeline-content{
+  background: var(--cream-light);
+  border: 2px solid var(--brown);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  box-shadow: var(--hard-shadow-sm);
+}
+.timeline-content h3{ margin: 0 0 6px; font-size: 1.05rem; }
+.timeline-content p{ margin:0; }
+
+.values-grid{
+  display:grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 28px;
+}
+@media (max-width: 820px){ .values-grid{ grid-template-columns: 1fr; } }
+
+/* ============ CONTACT ============ */
+.contact-grid{
+  display:grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 50px;
+}
+@media (max-width: 880px){
+  .contact-grid{ grid-template-columns: 1fr; }
+}
+.info-block{ margin-bottom: 30px; }
+.info-block h3{
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-family: var(--font-mono);
+  color: var(--orange-dark);
+}
+.hours-table{
+  width:100%;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: 0.92rem;
+}
+.hours-table td{
+  padding: 8px 0;
+  border-bottom: 1px dotted var(--brown-soft);
+}
+.hours-table td:last-child{ text-align:right; font-weight:700; }
+
+.map-box{
+  border: 3px solid var(--brown);
+  border-radius: var(--radius);
+  box-shadow: var(--hard-shadow);
+  aspect-ratio: 16/10;
+  background: repeating-linear-gradient(45deg, var(--mustard) 0 16px, var(--cream) 16px 32px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family: var(--font-mono);
+  text-align:center;
+  padding: 20px;
+}
+
+.form-card{
+  background: var(--cream-light);
+  border: 2px solid var(--brown);
+  border-radius: var(--radius);
+  box-shadow: var(--hard-shadow);
+  padding: 32px;
+}
+.form-row{ margin-bottom: 20px; }
+.form-row label{
+  display:block;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.75rem;
+  margin-bottom: 8px;
+  color: var(--brown-soft);
+}
+.form-row input,
+.form-row textarea{
+  width:100%;
+  padding: 12px 14px;
+  border: 2px solid var(--brown);
+  border-radius: 8px;
+  background: var(--cream);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--brown);
+  resize: vertical;
+}
+.form-row input:focus,
+.form-row textarea:focus{
+  outline: 3px solid var(--mustard);
+  outline-offset: 1px;
+}
+.form-row textarea{ min-height: 120px; }
+
+/* social icons row */
+.social-row{
+  display:flex;
+  gap: 14px;
+  margin-top: 16px;
+}
+.social-row a{
+  width: 40px; height:40px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+.social-row a:hover{
+  background: var(--mustard);
+  color: var(--brown);
+  border-color: var(--mustard);
+}
+
+/* focus visibility for accessibility */
+a:focus-visible, button:focus-visible{
+  outline: 3px solid var(--mustard);
+  outline-offset: 2px;
+}
+
+/* scroll offset so anchored sections clear the sticky nav */
+section[id]{ scroll-margin-top: 70px; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#home" class="logo">
+      <span class="logo-sun"></span>
+      <span>SUNNYSIDE<br><small>TEA &amp; COFFEE CO.</small></span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="#home" class="nav-link active">Home</a></li>
+      <li><a href="#menu" class="nav-link">Menu</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ================= HOME ================= -->
+<header class="hero" id="home">
+  <div class="hero-sun" aria-hidden="true"></div>
+  <div class="container hero-inner">
+    <div>
+      <span class="eyebrow">Est. '2025' Hand-Poured Daily</span>
+      <h1>Good Morning,<br>Sunshine.</h1>
+      <p>Hand-brewed teas, slow-poured coffee, and snacks worth lingering over. We've been keeping the kettle on since 2025 — pull up a stool and stay a while.</p>
+      <div class="btn-row">
+        <a href="#menu" class="btn btn-primary">See the Menu</a>
+        <a href="#contact" class="btn btn-outline">Find Our Counter</a>
+      </div>
+    </div>
+    <div class="hero-graphic">
+      <div class="cup">
+        <span class="steam" aria-hidden="true">~</span>
+        <span class="steam" aria-hidden="true">~</span>
+        <span class="steam" aria-hidden="true">~</span>
+        Fresh Pot<br>Always On
+      </div>
+    </div>
+  </div>
+</header>
+<div class="scallop scallop--orange-cream" aria-hidden="true"></div>
+
+<!-- FEATURED -->
+<section class="bg-cream">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">On The Counter Today</span>
+      <h2>What's Brewing</h2>
+      <p>A few favorites from our chalkboard — rotating with the seasons, served in our same chipped vintage mugs since day one.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <span class="tag">Tea</span>
+        <h3>Cardamom Cloud Chai</h3>
+        <p>Strong Assam leaves simmered slow with cardamom, ginger and milk, finished with a swirl of honey.</p>
+        <div class="price">₹120</div>
+      </div>
+      <div class="card">
+        <span class="tag">Coffee</span>
+        <h3>Sunset Cold Brew</h3>
+        <p>18-hour cold steep poured over orange-peel ice cubes — bright, smooth, and built for slow afternoons.</p>
+        <div class="price">₹160</div>
+      </div>
+      <div class="card">
+        <span class="tag">Tea</span>
+        <h3>Mumbai Cutting Chai</h3>
+        <p>Strong, sweet, and served the proper way — in a small glass, gone in two sips and worth a third.</p>
+        <div class="price">₹60</div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="scallop scallop--cream-avocado" aria-hidden="true"></div>
+
+<!-- SNACK TEASER -->
+<section class="bg-avocado">
+  <div class="container">
+    <div class="grid-2" style="align-items:center;">
+      <div>
+        <span class="eyebrow" style="color:var(--mustard)">From The Kitchen</span>
+        <h2>Something To Nibble</h2>
+        <p>No good cup goes unaccompanied. Our snack counter turns out warm, buttery, and slightly nostalgic bites all day long — banana bread, masala peanuts, and toasties that hiss when you cut them open.</p>
+        <div class="btn-row">
+          <a href="#menu" class="btn btn-light">View Snack Menu</a>
+        </div>
+      </div>
+      <div style="display:flex; justify-content:center; gap:24px; flex-wrap:wrap;">
+        <div class="stamp">Banana<br>Walnut<br>Bread</div>
+        <div class="stamp" style="transform:rotate(8deg);">Masala<br>Peanuts</div>
+        <div class="stamp" style="transform:rotate(-4deg);">Cheese<br>Toastie</div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="scallop scallop--avocado-cream" aria-hidden="true"></div>
+
+<!-- ABOUT TEASER -->
+<section class="bg-cream">
+  <div class="container">
+    <div class="grid-2" style="align-items:center;">
+      <div class="story-photo">
+        Polaroid of the original<br>roadside cart, 2025
+      </div>
+      <div>
+        <span class="eyebrow">Our Story</span>
+        <h2>Five Decades, One Counter</h2>
+        <p>It started with a kettle, a borrowed cart, and a corner that never had enough shade. Five decades on, the recipes haven't changed much — we've just gotten better at making them.</p>
+        <p style="font-family: var(--font-mono); font-size:0.95rem; color: var(--brown-soft);">"Brew it strong, serve it warm, and never rush a regular." — House motto, since 2025</p>
+        <div class="btn-row">
+          <a href="#about" class="btn btn-outline">Read Our Story</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MENU ================= -->
+<header class="page-header" id="menu">
+  <div class="container">
+    <span class="eyebrow">Chalkboard Specials</span>
+    <h1>The Menu</h1>
+    <p>Tea by the pot, coffee by the cup, and a kitchen that doesn't take shortcuts. Prices in INR.</p>
+  </div>
+</header>
+<div class="scallop scallop--orange-cream" aria-hidden="true"></div>
+
+<main class="bg-cream">
+  <div class="container">
+
+    <!-- TEA -->
+    <section class="menu-section">
+      <div class="menu-section-head">
+        <div>
+          <span class="eyebrow">01 — Steeped Slow</span>
+          <h2>Tea Leaves &amp; Brews</h2>
+        </div>
+      </div>
+      <div class="menu-list">
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h3>Masala Chai</h3>
+            <p>Black tea, whole milk, and our house spice blend — cinnamon, clove, cardamom &amp; black pepper.</p>
+          </div>
+          <div class="menu-item-price">₹70</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h3>Mumbai Cutting Chai</h3>
+            <p>Extra strong, extra sweet, served in a small glass — the original "half-cup" pour.</p>
+          </div>
+          <div class="menu-item-price">₹60</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h3>Earl Grey Sunrise</h3>
+            <p>Bergamot-laced black tea with a thin curl of orange zest, served in our striped vintage cups.</p>
+          </div>
+          <div class="menu-item-price">₹90</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h3>Tulsi Ginger Warmer</h3>
+            <p>Holy basil and fresh ginger root, lightly sweetened with jaggery. Caffeine-free.</p>
+          </div>
+          <div class="menu-item-price">₹80</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h3>Kashmiri Kahwa</h3>
+            <p>Green tea with saffron, almonds, and a whisper of rose — served in a copper kettle for two.</p>
+          </div>
+          <div class="menu-item-price">₹150</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h3>Iced Hibiscus Cooler</h3>
+            <p>Hibiscus and lemongrass cold-steeped overnight, served tall with mint and lime.</p>
+          </div>
+          <div class="menu-item-price">₹110</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COFFEE -->
+    <section class="menu-section">
+      <div class="menu-section-head">
+        <div>
+          <span class="eyebrow">02 — From The Roaster</span>
+          <h2>Coffee Counter</h2>
+        </div>
+      </div>
+      <div class="menu-list">
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h3>South Indian Filter Kaapi</h3>
+            <p>Dark roast filter coffee, frothed with hot milk and poured tableside, traditional dabarah-style.</p>
+          </div>
+          <div class="menu-item-price">₹70</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h3>Sunset Cold Brew</h3>
+            <p>18-hour cold steep over orange-peel ice — citrusy, smooth, no bitterness.</p>
+          </div>
+          <div class="menu-item-price">₹160</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h3>Vintage Espresso</h3>
+            <p>A short, syrupy double shot pulled on our 2026 lever machine. Ask for "the usual."</p>
+          </div>
+          <div class="menu-item-price">₹100</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h3>Cardamom Mocha</h3>
+            <p>Espresso, steamed milk, dark chocolate, and a pinch of green cardamom.</p>
+          </div>
+          <div class="menu-item-price">₹180</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h3>Affogato</h3>
+            <p>A scoop of vanilla bean ice cream, drowned in a hot shot of espresso.</p>
+          </div>
+          <div class="menu-item-price">₹150</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h3>Coconut Cold Foam Latte</h3>
+            <p>Espresso and milk topped with whipped coconut cream foam, dusted with cocoa.</p>
+          </div>
+          <div class="menu-item-price">₹190</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SNACKS -->
+    <section class="menu-section">
+      <div class="menu-section-head">
+        <div>
+          <span class="eyebrow">03 — From The Kitchen</span>
+          <h2>Snacks &amp; Bites</h2>
+        </div>
+      </div>
+      <div class="menu-list">
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h3>Banana Walnut Bread</h3>
+            <p>Thick-cut, lightly toasted, with a smear of salted butter.</p>
+          </div>
+          <div class="menu-item-price">₹110</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h3>Masala Peanuts</h3>
+            <p>Roasted peanuts tossed with chaat masala, curry leaf, and lime — the original bar snack.</p>
+          </div>
+          <div class="menu-item-price">₹70</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h3>Cheese Chili Toastie</h3>
+            <p>Grilled sourdough, melted cheddar, and green chili — served with tomato chutney.</p>
+          </div>
+          <div class="menu-item-price">₹140</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h3>Vada Pav Sliders</h3>
+            <p>Mini spiced potato fritters in a soft pav with garlic chutney. Comes in twos.</p>
+          </div>
+          <div class="menu-item-price">₹130</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h3>Shortbread Biscuits</h3>
+            <p>Buttery cardamom shortbread, baked fresh each morning. Sold by the pair.</p>
+          </div>
+          <div class="menu-item-price">₹60</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h3>Mini Veg Cutlets</h3>
+            <p>Crisp-fried potato and pea cutlets with mint chutney, served three to a plate.</p>
+          </div>
+          <div class="menu-item-price">₹120</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMBOS -->
+    <section class="menu-section">
+      <div class="menu-section-head">
+        <div>
+          <span class="eyebrow">04 — Best Pairings</span>
+          <h2>Blue Plate Combos</h2>
+        </div>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <span class="tag">Combo</span>
+          <h3>Morning Starter</h3>
+          <p>Masala Chai + Banana Walnut Bread, toasted to order.</p>
+          <div class="price">₹160</div>
+        </div>
+        <div class="card">
+          <span class="tag">Combo</span>
+          <h3>Afternoon Pick-Me-Up</h3>
+          <p>Filter Kaapi + Masala Peanuts, the office-break favorite.</p>
+          <div class="price">₹120</div>
+        </div>
+        <div class="card">
+          <span class="tag">Combo</span>
+          <h3>Evening Wind-Down</h3>
+          <p>Sunset Cold Brew + Cheese Chili Toastie, best enjoyed slow.</p>
+          <div class="price">₹270</div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- ================= ABOUT ================= -->
+<header class="page-header" id="about">
+  <div class="container">
+    <span class="eyebrow">Five Decades &amp; Counting</span>
+    <h1>Our Story</h1>
+    <p>From a borrowed kettle on a busy corner to the counter you're sitting at now — the short version of a long brew.</p>
+  </div>
+</header>
+<div class="scallop scallop--orange-cream" aria-hidden="true"></div>
+
+<main class="bg-cream">
+
+  <!-- STORY INTRO -->
+  <section>
+    <div class="container story-grid">
+      <div class="story-photo">
+        Original cart &amp; first<br>regular customers, 2025
+      </div>
+      <div>
+        <span class="eyebrow">How It Started</span>
+        <h2>A Kettle, A Cart, and a Corner That Needed Shade</h2>
+        <p>In 2025, our founder set up a single kettle and three stools on a street corner that everyone walked past but no one stopped at — until the chai started simmering. Within a month, the corner had regulars. Within a year, it had a name.</p>
+        <p>The recipes haven't changed much since. The cardamom still comes whole, the milk still gets watched closely, and the chai still gets poured with that satisfying high-arm stretch that cools it just enough to drink.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="bg-mustard">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">The Long Brew</span>
+        <h2>Five Decades, Marked in Cups</h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-year">2025</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>The First Kettle</h3>
+            <p>A single cart, three stools, and a chai recipe scribbled on the back of a cigarette box.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2025</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>First Indoor Counter</h3>
+            <p>The cart moved indoors to a small storefront — same stools, now with a roof and a record player.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2026</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>The Roastery Opens</h3>
+            <p>We started roasting our own coffee in small batches, finally putting "& Coffee" in the name for good.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">Today</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>Same Counter, New Faces</h3>
+            <p>Three generations of regulars later, we're still pouring strong and slow — just with better chairs.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">What We Stand For</span>
+        <h2>The House Rules</h2>
+      </div>
+      <div class="values-grid">
+        <div class="card">
+          <span class="tag">Rule One</span>
+          <h3>Slow Brewed, Always</h3>
+          <p>No shortcuts on the kettle. Tea gets simmered, coffee gets filtered, and nothing leaves the counter before it's ready.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Rule Two</span>
+          <h3>Local First</h3>
+          <p>Our spices, milk, and bread come from vendors we've known for years — most of them longer than we've known our regulars.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Rule Three</span>
+          <h3>Vinyl &amp; Vibes</h3>
+          <p>The record player has been running since 1989. If it's quiet in here, something's wrong.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Behind The Counter</span>
+        <h2>The Crew</h2>
+      </div>
+      <div class="grid-3">
+        <div class="card" style="text-align:center;">
+          <div class="story-photo" style="aspect-ratio:1; margin-bottom:16px;">Asha</div>
+          <h3>Asha</h3>
+          <p>Head brewer. Knows every regular's order before they sit down.</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div class="story-photo" style="aspect-ratio:1; margin-bottom:16px;">Imran</div>
+          <h3>Imran</h3>
+          <p>Roastmaster. Has strong opinions about bean storage and will share them.</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div class="story-photo" style="aspect-ratio:1; margin-bottom:16px;">Leela</div>
+          <h3>Leela</h3>
+          <p>Runs the kitchen and the playlist, in that order of importance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= CONTACT ================= -->
+<header class="page-header" id="contact">
+  <div class="container">
+    <span class="eyebrow">Pull Up A Stool</span>
+    <h1>Find Us</h1>
+    <p>Drop by the counter, ring ahead for a table, or send us a note — we read every one, usually over a cup of something warm.</p>
+  </div>
+</header>
+<div class="scallop scallop--orange-cream" aria-hidden="true"></div>
+
+<main class="bg-cream">
+  <section>
+    <div class="container contact-grid">
+
+      <!-- INFO -->
+      <div>
+        <div class="info-block">
+          <h3>Address</h3>
+          <p>J88V+8WR Noida, Uttar Pradesh<br></p>
+        </div>
+
+        <div class="info-block">
+          <h3>Hours</h3>
+          <table class="hours-table">
+            <tr><td>Monday – Friday</td><td>7:00 AM – 9:00 PM</td></tr>
+            <tr><td>Saturday</td><td>7:30 AM – 10:00 PM</td></tr>
+            <tr><td>Sunday</td><td>8:00 AM – 8:00 PM</td></tr>
+          </table>
+        </div>
+
+        <div class="info-block">
+          <h3>Reach Us</h3>
+          <p>Phone: +91 7011403027<br>Email: ritasharmabrij@gmail.com</p>
+          <div class="social-row">
+            <a href="#" aria-label="Instagram">IG</a>
+            <a href="#" aria-label="Facebook">FB</a>
+          </div>
+        </div>
+
+        <div class="map-box">
+          Map of Marigold Lane —<br>two doors down from the record shop
+        </div>
+      </div>
+
+      <!-- FORM -->
+      <div class="form-card">
+        <span class="eyebrow">Send A Note</span>
+        <h2>Say Hello</h2>
+        <form onsubmit="event.preventDefault(); alert('Thanks for reaching out — we will get back to you soon!');">
+          <div class="form-row">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name">
+          </div>
+          <div class="form-row">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com">
+          </div>
+          <div class="form-row">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" placeholder="What's this about?">
+          </div>
+          <div class="form-row">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell us what's on your mind..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<div class="scallop scallop--cream-brown" aria-hidden="true"></div>
+<footer class="footer bg-brown">
+  <div class="container footer-inner">
+    <div>
+      <div class="logo" style="color:var(--cream); margin-bottom:14px;">
+        <span class="logo-sun"></span>
+        <span>SUNNYSIDE<br><small style="color:var(--mustard)">TEA &amp; COFFEE CO.</small></span>
+      </div>
+      <p>Hand-brewed since 2025. Same counter, same kettle, slightly newer chairs.</p>
+      <div class="now-spinning">
+        <div class="vinyl" aria-hidden="true"></div>
+        <span style="font-family: var(--font-mono); font-size:0.85rem;">Now Spinning: AM Radio Funk Mix Vol. 4</span>
+      </div>
+    </div>
+    <div>
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Visit</h4>
+      <p>J88V+8WR Noida, Uttar Pradesh<br></p>
+      <p>Open daily, 7am – 9pm</p>
+      <div class="social-row">
+        <a href="#" aria-label="Instagram">IG</a>
+        <a href="#" aria-label="Facebook">FB</a>
+      </div>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© 2025–2026 Sunnyside Tea &amp; Coffee Co.</span>
+    <span>Made with chai stains &amp; vinyl dust</span>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.querySelector('.nav-toggle');
+  const links = document.querySelector('.nav-links');
+  if (toggle && links) {
+    toggle.addEventListener('click', () => {
+      links.classList.toggle('open');
+    });
+  }
+
+  // active nav link highlighting on scroll + click
+  const navLinks = document.querySelectorAll('.nav-link');
+  const sections = ['home','menu','about','contact'].map(id => document.getElementById(id));
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+      if (links) links.classList.remove('open');
+    });
+  });
+
+  const setActiveByScroll = () => {
+    let current = sections[0];
+    sections.forEach(sec => {
+      if (sec && window.scrollY >= sec.offsetTop - 100) current = sec;
+    });
+    navLinks.forEach(l => {
+      l.classList.toggle('active', l.getAttribute('href') === '#' + current.id);
+    });
+  };
+  window.addEventListener('scroll', setActiveByScroll);
+  setActiveByScroll();
+});
+</script>
+</body>
+</html>
